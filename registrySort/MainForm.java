@@ -4,14 +4,15 @@ import java.util.regex.Pattern;
 
 public class MainForm {
     public static Scanner inputScanner= new Scanner(System.in);
+    public static boolean isProgramRunning = true;
 
     public static void main(String[] args){
-
+while(isProgramRunning){
 //Ime
         System.out.println("Vavedete parvo ime: ");
         String firstName = new String();
         if (isStringOnlyLetters() && isFirstLetterCapital()){
-            System.out.print(firstName);
+            System.out.print("{" +firstName +"}");
         }
         else {System.out.println("Greska! Vavedete otnovo!!");}
 
@@ -19,7 +20,7 @@ public class MainForm {
         System.out.println("Vavedete familno ime: ");
         String familyName = new String();
         if (isStringOnlyLetters() && isFirstLetterCapital()){
-            System.out.print(familyName);
+            System.out.print("{"+familyName+"}");
         }
         else {System.out.println("Greshka! Vavedete otnovo!!");}
 
@@ -29,6 +30,7 @@ public class MainForm {
 //Adres
         System.out.println("Vavedete adres: ");
         String addressOfPerson = new String();
+        System.out.println("Adres: " + addressOfPerson);
 
 //Telefon
         System.out.println("Vavedete telefonen nomer: ");
@@ -62,6 +64,13 @@ public class MainForm {
         if (izbor == 3){
             Roditel.renderChildrenNames();
         }
+        if(izbor==4){
+        renderFullData();
+        }
+        if(izbor == 5){
+        isProgramRunning = false;
+        }
+}
 
     }
     //render menu
@@ -69,6 +78,8 @@ public class MainForm {
         System.out.println("1. Pensioner ");
         System.out.println("2. Rabotesht ");
         System.out.println("3. Maika");
+        System.out.println("4. Show data");
+        System.out.println("5. Stop");
     }
     //is age correct
     public static void correctAge(){
@@ -86,6 +97,7 @@ public class MainForm {
         System.out.println("2. Female ");
         //System.out.println("3. Cheese sandwich ");
     }
+    
     //proverka dali ime i familia sa verni
     public static boolean isStringOnlyLetters(){
         String s;
@@ -101,6 +113,44 @@ public class MainForm {
                 return true;
             }
             return false;
+        }
+    }
+   
+    public static void renderSortMenu(){
+        System.out.println("Izberete sortirovka:\n1.Sortirane po parvo ime\n2.Sortirane po familno ime\n3.Sortirane po godini ");
+        int sortChoice = inputScanner.nextInt();
+        if(sortChoice == 1){
+            nameSort();
+        }
+        if(sortChoice == 2){
+        familyNameSort();
+        }
+        if(sortChoice == 3){
+        ageSort();
+        }
+    }
+    
+    public static String nameSort(){
+        System.out.println("Sortirane po parvo ime: ");
+        String searchedName = new String();
+        if(firstName == searchedName){
+            return firstName;
+        }
+    }
+    
+    public static String familyNameSort(){
+       System.out.println("Sortirane po familno ime: ");
+       String searchedFamilyName = new String();
+        if(familyName == searchedFamilyName){
+        return familyName;
+        }
+    }
+    
+    public static int ageSort(){
+    System.out.println("Sortirane po vazrast: ");
+        int searchedAge = inputScanner.nextInt();
+        if(godini == searchedAge){
+        return godini;
         }
     }
 }
